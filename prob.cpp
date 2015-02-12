@@ -57,3 +57,7 @@ PROBLEM::~PROBLEM(){
 	c.clear();
 	ivb.clear();
 }
+
+void PROBLEM::Volcar_problema(){
+
+}
