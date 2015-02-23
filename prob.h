@@ -37,7 +37,7 @@ class PROBLEM {
 public:
 	PROBLEM(char nombrefichero[]);
 	~PROBLEM();
-	void Volcar_problema();
+	void volcar_problema();
 	//m�todos propios del simplex
 	unsigned entrante();
 	unsigned saliente(unsigned s);

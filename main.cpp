@@ -8,9 +8,11 @@
 #include "prob.h"
 int main(){
 
-	char nombrefichero[85] = "";
-	cin >> nombrefichero;
+	char nombrefichero[85] = "ej1.lpp";
+	//cout << "Escriba el nombre del fichero a leer" << endl;
+	//cin >> nombrefichero;
 	PROBLEM problema1(nombrefichero);
+
 }
 
 

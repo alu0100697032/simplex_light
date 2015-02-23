@@ -45,7 +45,7 @@ PROBLEM::PROBLEM(char nombrefichero[85]) {
 			ivb.push_back(n + i); // la v. básica asociada a la fila i es n + i
 		}
 		textfile.close();
-		cout << "Fichero cargado" << endl;
+		volcar_problema();
 	}else {
 		cout << "Error en la lectura del fichero" << endl;
 	}
@@ -58,6 +58,36 @@ PROBLEM::~PROBLEM(){
 	ivb.clear();
 }
 
-void PROBLEM::Volcar_problema(){
-
+void PROBLEM::volcar_problema(){
+	for(int i = 0; i < 4; i++)
+		cout << clase[i];
+	for(int i = 0; i < n; i++){
+		if(i == 0)
+			cout << c[i] << "x";
+		else{
+			if(c[i] == 0)
+				continue;
+			else if(c[i] > 0)
+				cout << "+" << c[i] << "x" << i+1;
+			else
+				cout << c[i] << "x" << i+1;
+		}
+	}
+	cout << endl << "Sujeto a: " << endl;
+	for(int i = 0; i < m; i++){
+		cout << "     ";
+		for(int j = 0; j <= n; j++){
+			if(j == n)
+				cout << " <= " << b[i];
+			else{
+				if(A[i][j] == 0)
+					cout << "    ";
+				else if(j != 0 && A[i][j] > 0)
+					cout << "+" << A[i][j] << "x" << j+1;
+				else
+					cout << A[i][j] << "x" << j+1;
+			}
+		}
+		cout << endl;
+	}
 }
