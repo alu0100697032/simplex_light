@@ -46,48 +46,93 @@ PROBLEM::PROBLEM(char nombrefichero[85]) {
 		}
 		textfile.close();
 		volcar_problema();
-	}else {
+	} else {
 		cout << "Error en la lectura del fichero" << endl;
 	}
 }
 
-PROBLEM::~PROBLEM(){
+PROBLEM::~PROBLEM() {
 	A.clear();
 	b.clear();
 	c.clear();
 	ivb.clear();
 }
 
-void PROBLEM::volcar_problema(){
-	for(int i = 0; i < 4; i++)
-		cout << clase[i];
-	for(int i = 0; i < n; i++){
-		if(i == 0)
-			cout << c[i] << "x";
-		else{
-			if(c[i] == 0)
-				continue;
-			else if(c[i] > 0)
-				cout << "+" << c[i] << "x" << i+1;
-			else
-				cout << c[i] << "x" << i+1;
-		}
+void PROBLEM::volcar_problema() {
+
+	cout << "Z= " << clase << " ";
+	for (unsigned int i = 0; i < n; i++) {
+		if (c[i] >= 0)
+			cout << "+" << c[i] << "x" << i + 1 << " ";
+		else
+			cout << c[i] << "x" << i + 1 << " ";
 	}
 	cout << endl << "Sujeto a: " << endl;
-	for(int i = 0; i < m; i++){
+	for (unsigned int i = 0; i < m; i++) {
 		cout << "     ";
-		for(int j = 0; j <= n; j++){
-			if(j == n)
+		for (unsigned int j = 0; j <= n; j++) {
+			if (j == n)
 				cout << " <= " << b[i];
-			else{
-				if(A[i][j] == 0)
-					cout << "    ";
-				else if(j != 0 && A[i][j] > 0)
-					cout << "+" << A[i][j] << "x" << j+1;
+			else {
+				if (A[i][j] >= 0)
+					cout << "+" << A[i][j] << "x" << j + 1 << " ";
 				else
-					cout << A[i][j] << "x" << j+1;
+					cout << A[i][j] << "x" << j + 1 << " ";
 			}
 		}
 		cout << endl;
 	}
+	cout << endl;
+}
+
+void PROBLEM::volcar_tabla() {
+	/*
+	 * Fila 0 encabezado una columna vacía, una columna por cada X (n) +
+	 * una columna por cada h, condicion, (m) + una columna con b
+	 * Luego m filas, una por h, en el cruce de la h de la fila con la h
+	 * de la columna vale 1 el resto 0
+	 * Luego una fila más con Z, cuando cruza con las h de la columna vale 0
+	 */
+
+	/*
+	 * CABECERA DE LA TABLA
+	 */
+	cout << "V.B    ";
+	for (unsigned int i = 1; i <= n; i++) {
+		cout << 'x' << i << "    ";
+	}
+	for (unsigned int i = 1; i <= m; i++) {
+		cout << 'h' << i << "    ";
+	}
+	cout << 'b' << endl;
+	cout
+			<< "------------------------------------------------------------------------"
+			<< endl;
+	/*
+	 * CUERPO DE LA TABLA
+	 */
+	for (unsigned int i = 0; i <= m; i++) {
+		for (unsigned int j = 0; j < n + m + 2; j++) {
+			if (j == 0) { //Variables básicas
+				if (ivb[i] >= n)
+					cout << 'h' << ivb[i] << " | ";
+				else
+					cout << 'x' << ivb[i] << " | ";
+			} else if (j == n + m + 1) { //términos independientes
+				cout << b[i];
+			} else {
+				cout << A[i][j - 1] << "  "; //coeficientes tecnológicos
+			}
+
+		}
+		cout << endl;
+	}
+	cout
+			<< "------------------------------------------------------------------------"
+			<< endl;
+	cout << "-Z    ";
+	for (unsigned int i = 0; i < n+m; i++){
+		cout << c[i] << "  ";
+	}
+	cout << Vo << endl;
 }

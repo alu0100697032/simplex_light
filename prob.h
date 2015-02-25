@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
+#include <stdio.h>
 
 const double CEROPOS = 1.0e-15;
 const double CERONEG = -1.0e-15;
