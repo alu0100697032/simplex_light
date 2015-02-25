@@ -10,6 +10,7 @@
 PROBLEM::PROBLEM(char nombrefichero[85]) {
 	unsigned i, j;
 	double dummy;
+	Vo = 0.0;
 	ifstream textfile;
 	textfile.open(nombrefichero);
 	if (textfile.is_open()) {
@@ -60,7 +61,9 @@ PROBLEM::~PROBLEM() {
 
 void PROBLEM::volcar_problema() {
 
+	//Clase de problema min o max
 	cout << "Z= " << clase << " ";
+	//Costes unitarios
 	for (unsigned int i = 0; i < n; i++) {
 		if (c[i] >= 0)
 			cout << "+" << c[i] << "x" << i + 1 << " ";
@@ -68,6 +71,7 @@ void PROBLEM::volcar_problema() {
 			cout << c[i] << "x" << i + 1 << " ";
 	}
 	cout << endl << "Sujeto a: " << endl;
+	//Coeficientes tecnológicos y términos independientes
 	for (unsigned int i = 0; i < m; i++) {
 		cout << "     ";
 		for (unsigned int j = 0; j <= n; j++) {
@@ -131,8 +135,29 @@ void PROBLEM::volcar_tabla() {
 			<< "------------------------------------------------------------------------"
 			<< endl;
 	cout << "-Z    ";
-	for (unsigned int i = 0; i < n+m; i++){
+	for (unsigned int i = 0; i < n + m; i++) {
 		cout << c[i] << "  ";
 	}
 	cout << Vo << endl;
+}
+
+void PROBLEM::mostrar_solucion() {
+	cout << "**************************************************************"
+			<< endl;
+	cout << "                           SOLUCIÓN                           "
+			<< endl;
+	for (unsigned int i = 0; i <= m; i++) {
+		if (i < m) {//Muestra las variables básicas
+			if (ivb[i] >= n)
+				cout << 'h' << ivb[i] << " = ";
+			else
+				cout << 'x' << ivb[i] << " = ";
+			cout << b[i] << ' ';
+		}else{//Muestra el valor de la función objetivo
+			cout << "Z = " << Vo;
+		}
+	}
+	cout << endl;
+	cout << "**************************************************************"
+			<< endl;
 }
