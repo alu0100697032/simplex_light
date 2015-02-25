@@ -115,17 +115,20 @@ void PROBLEM::volcar_tabla() {
 	/*
 	 * CUERPO DE LA TABLA
 	 */
-	for (unsigned int i = 0; i <= m; i++) {
-		for (unsigned int j = 0; j < n + m + 2; j++) {
+	for (unsigned int i = 0; i < m; i++) {
+		for (unsigned int j = 0; j <= n + m + 1; j++) {
 			if (j == 0) { //Variables básicas
 				if (ivb[i] >= n)
-					cout << 'h' << ivb[i] << " | ";
+					cout << 'h' << ivb[i] - 2 << " |   ";
 				else
-					cout << 'x' << ivb[i] << " | ";
+					cout << 'x' << ivb[i] + 1 << " |   ";
 			} else if (j == n + m + 1) { //términos independientes
 				cout << b[i];
-			} else {
-				cout << A[i][j - 1] << "  "; //coeficientes tecnológicos
+			} else {//coeficientes tecnológicos
+				if(A[i][j - 1] >= 0)
+					cout << A[i][j - 1] << "     ";
+				else
+					cout << A[i][j - 1] << "    ";
 			}
 
 		}
@@ -135,10 +138,11 @@ void PROBLEM::volcar_tabla() {
 			<< "------------------------------------------------------------------------"
 			<< endl;
 	cout << "-Z    ";
+	//Costes unitarios
 	for (unsigned int i = 0; i < n + m; i++) {
-		cout << c[i] << "  ";
+		cout << c[i] << "     ";
 	}
-	cout << Vo << endl;
+	cout << Vo << endl;//Valor de la funcion objetivo
 }
 
 void PROBLEM::mostrar_solucion() {
@@ -147,13 +151,13 @@ void PROBLEM::mostrar_solucion() {
 	cout << "                           SOLUCIÓN                           "
 			<< endl;
 	for (unsigned int i = 0; i <= m; i++) {
-		if (i < m) {//Muestra las variables básicas
+		if (i < m) { //Muestra las variables básicas
 			if (ivb[i] >= n)
 				cout << 'h' << ivb[i] << " = ";
 			else
 				cout << 'x' << ivb[i] << " = ";
 			cout << b[i] << ' ';
-		}else{//Muestra el valor de la función objetivo
+		} else { //Muestra el valor de la función objetivo
 			cout << "Z = " << Vo;
 		}
 	}

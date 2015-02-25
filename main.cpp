@@ -20,31 +20,51 @@ int main() {
 	//cout << "Escriba el nombre del fichero a leer" << endl;
 	//cin >> nombrefichero;
 	PROBLEM problema1(nombrefichero);
+	cout << "¡Fichero cargado!" << endl << endl;
+	cout << "Opciones:" << endl;
+	cout << "-Pulse n para cargar un nuevo fichero" << endl;
+	cout << "-Pulse t para representar las tablas del simplex" << endl;
+	cout << "-Pulse s para mostrar la solución del problema" << endl;
+	cout << "-Pulse x para salir del programa" << endl;
 	while (parar == false) {
 		cin >> opcion;
 		switch (opcion) {
-		case 'p': {
-			problema1.volcar_problema();
+		case 'n':
+		case 'N': {
+			cout << "Escriba el nombre del fichero a leer:" << endl;
+			cin >> nombrefichero;
+			PROBLEM problema1(nombrefichero);
 		}
 			break;
-		case 't': {
+		case 't':
+		case 'T': {
 			problema1.volcar_tabla();
 		}
 			break;
-		case 's': {
+		case 's':
+		case 'S': {
 			problema1.mostrar_solucion();
 		}
 			break;
-		case 'x': {
+		case 'h':
+		case 'H': {
+			cout << "Opciones:" << endl;
+			cout << "-Pulse n para cargar un nuevo fichero" << endl;
+			cout << "-Pulse t para representar las tablas del simplex" << endl;
+			cout << "-Pulse s para mostrar la solución del problema" << endl;
+			cout << "-Pulse x para salir del programa" << endl;
+		}
+			break;
+		case 'x':
+		case 'X': {
+			cout << "¡Programa cerrado!" << endl;
 			parar = true;
 		}
 			break;
 		default: {
-			cout << "Opciones:" << endl;
-			cout << "p para volvar el problema cargado desde fichero" << endl;
-			cout << "t para representar las tablas del simplex" << endl;
-			cout << "s para mostrar la solución del problema" << endl;
-			cout << "x para salir del programa" << endl;
+			cout
+					<< "Seleccione una de las opciones. h para desplegar la lista de opciones:"
+					<< endl;
 		}
 			break;
 		}
