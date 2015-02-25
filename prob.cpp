@@ -166,3 +166,15 @@ void PROBLEM::mostrar_solucion() {
 	cout << "**************************************************************"
 			<< endl;
 }
+
+/*
+ * unsigned PROBLEM::entrante(){
+ * a = UERROR; min =  CERONEG;
+ * para todo i = 0 n +nh-1
+ * if(c[i] < min){
+ * s = i;
+ * min = c[i]
+ * }
+ * return(s);
+ * }
+ */
