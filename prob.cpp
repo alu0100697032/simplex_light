@@ -97,7 +97,7 @@ void PROBLEM::volcar_tabla() {
 	 * de la columna vale 1 el resto 0
 	 * Luego una fila más con Z, cuando cruza con las h de la columna vale 0
 	 */
-
+	//Corregir: solo un bucle
 	/*
 	 * CABECERA DE LA TABLA
 	 */
@@ -143,6 +143,7 @@ void PROBLEM::volcar_tabla() {
 		cout << c[i] << "     ";
 	}
 	cout << Vo << endl;//Valor de la funcion objetivo
+	// corregir: si es max ->> -Vo
 }
 
 void PROBLEM::mostrar_solucion() {
