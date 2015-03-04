@@ -59,6 +59,7 @@ PROBLEM::~PROBLEM() {
 	ivb.clear();
 }
 
+
 void PROBLEM::volcar_problema() {
 
 	//Clase de problema min o max
@@ -170,38 +171,41 @@ unsigned PROBLEM::entrante() {
 
 unsigned PROBLEM::saliente(unsigned s) {
 
-	unsigned min = UERROR;
-	for (int i = 0; i < m; i++){
-		if(A[i][s] <= 0){
-			min = UERROR; //duda
-		}else if(b[i]/A[i][s] < min){
-			min = b[i]/A[i][s];
+	unsigned min = INFR;
+	unsigned r = UERROR;
+	for (int i = 0; i < m; i++) {
+		if ((b[i] / A[i][s] < min) && (A[i][s] > CEROPOS)) {
+			min = b[i] / A[i][s];
+			r = i;
 		}
 	}
-	//return duda
+	return r;
 }
 
-/*void PROBLEM::actualizar_valores(unsigned s, unsigned r) {
- ivb[r] = s; // actualización de la base
- double temp = A[r][s];
- A[r] /= temp; //duda
- x[r] /= temp; //duda
- for (int i = 1; i < m; i++) {
- if (i != r && A[i][s] != 0) {
- temp = A[i][s];
- A[i] -= A[r] * temp; // la fila entera de i
- b[i] -= b[r] * temp;
- }
- Vo -= b[r] * c[s]; //actualizamos Vo
- c[i] -= c[s] * A[r][i];
- para todo //duda
- i<> s;
- cr[s] = 0.0;
- }
+void PROBLEM::actualizar_valores(unsigned s, unsigned r) {
+	ivb[r] = s; // actualización de la base
+	double temp = A[r][s];
+	for (unsigned i = 0; i < n +nh; i++)
+		A[r][i] /= temp; //bucle para dividir toda la fila
+	b[r] /= temp; //duda
+	for (int i = 0; i < m; i++) {
+		if (i != r && A[i][s] != 0) {
+			temp = A[i][s];
+			for(unsigned j = 0; j < n+nh; j++)
+				A[i][j] -= A[r][j] * temp; // la fila entera de i
+			b[i] -= b[r] * temp;
+		}
+		Vo -= b[r] * c[s]; //actualizamos Vo
+		for (unsigned i = 0; i < n + nh; i++) {
+			if (i != s)
+				c[i] -= c[s] * A[r][i];
+		}
+		c[s] = 0.0;
+	}
 
- }*/
+}
 
-/*void PROBLEM::Simplex_Light() {
+void PROBLEM::Simplex_Light() {
 	unsigned s, r;
 	while ((s = entrante()) != UERROR) {
 		volcar_tabla();
@@ -213,4 +217,4 @@ unsigned PROBLEM::saliente(unsigned s) {
 	}
 	volcar_tabla();
 	mostrar_solucion();
-}*/
+}

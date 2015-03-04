@@ -11,14 +11,15 @@ int main() {
 	/*
 	 * FASE DESARROLLO
 	 */
-	char nombrefichero[85] = "ej1.lpp";
+	//char nombrefichero[85] = "ej1.lpp";
+	char nombrefichero[85];
 	/*
 	 * FASE ENTREGA
 	 */
 	bool parar = false;
 	char opcion;
-	//cout << "Escriba el nombre del fichero a leer" << endl;
-	//cin >> nombrefichero;
+	cout << "Escriba el nombre del fichero a leer" << endl;
+	cin >> nombrefichero;
 	PROBLEM problema1(nombrefichero);
 	cout << "¡Fichero cargado!" << endl << endl;
 	cout << "Opciones:" << endl;
@@ -47,7 +48,7 @@ int main() {
 			break;
 		case 'r':
 		case 'R	': {
-			//problema1.Simplex_Light();
+			problema1.Simplex_Light();
 		}
 			break;
 		case 's':
