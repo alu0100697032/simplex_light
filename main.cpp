@@ -22,10 +22,14 @@ int main() {
 	PROBLEM problema1(nombrefichero);
 	cout << "¡Fichero cargado!" << endl << endl;
 	cout << "Opciones:" << endl;
-	cout << "-Pulse n para cargar un nuevo fichero" << endl;
-	cout << "-Pulse t para representar las tablas del simplex" << endl;
-	cout << "-Pulse s para mostrar la solución del problema" << endl;
-	cout << "-Pulse x para salir del programa" << endl;
+	cout << "---------------------------------------------------" << endl;
+	cout << "-Pulse n para cargar un nuevo fichero             -" << endl;
+	cout << "-Pulse t para representar las tablas del simplex  -" << endl;
+	cout << "-Pulse r para resolver el problema                -" << endl;
+	cout << "-Pulse s para mostrar la solución del problema    -" << endl;
+	cout << "-Pulse h ver opciones                             -" << endl;
+	cout << "-Pulse x para salir del programa                  -" << endl;
+	cout << "---------------------------------------------------" << endl;
 	while (parar == false) {
 		cin >> opcion;
 		switch (opcion) {
@@ -41,6 +45,11 @@ int main() {
 			problema1.volcar_tabla();
 		}
 			break;
+		case 'r':
+		case 'R	': {
+			//problema1.Simplex_Light();
+		}
+			break;
 		case 's':
 		case 'S': {
 			problema1.mostrar_solucion();
@@ -49,10 +58,14 @@ int main() {
 		case 'h':
 		case 'H': {
 			cout << "Opciones:" << endl;
-			cout << "-Pulse n para cargar un nuevo fichero" << endl;
-			cout << "-Pulse t para representar las tablas del simplex" << endl;
-			cout << "-Pulse s para mostrar la solución del problema" << endl;
-			cout << "-Pulse x para salir del programa" << endl;
+				cout << "---------------------------------------------------" << endl;
+				cout << "-Pulse n para cargar un nuevo fichero             -" << endl;
+				cout << "-Pulse t para representar las tablas del simplex  -" << endl;
+				cout << "-Pulse r para resolver el problema                -" << endl;
+				cout << "-Pulse s para mostrar la solución del problema    -" << endl;
+				cout << "-Pulse h ver opciones                             -" << endl;
+				cout << "-Pulse x para salir del programa                  -" << endl;
+				cout << "---------------------------------------------------" << endl;
 		}
 			break;
 		case 'x':

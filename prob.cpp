@@ -90,17 +90,8 @@ void PROBLEM::volcar_problema() {
 }
 
 void PROBLEM::volcar_tabla() {
-	/*
-	 * Fila 0 encabezado una columna vacía, una columna por cada X (n) +
-	 * una columna por cada h, condicion, (m) + una columna con b
-	 * Luego m filas, una por h, en el cruce de la h de la fila con la h
-	 * de la columna vale 1 el resto 0
-	 * Luego una fila más con Z, cuando cruza con las h de la columna vale 0
-	 */
 	//Corregir: solo un bucle
-	/*
-	 * CABECERA DE LA TABLA
-	 */
+	//ABECERA DE LA TABLA
 	cout << "V.B    ";
 	for (unsigned int i = 1; i <= n; i++) {
 		cout << 'x' << i << "    ";
@@ -112,9 +103,7 @@ void PROBLEM::volcar_tabla() {
 	cout
 			<< "------------------------------------------------------------------------"
 			<< endl;
-	/*
-	 * CUERPO DE LA TABLA
-	 */
+	//CUERPO DE LA TABLA
 	for (unsigned int i = 0; i < m; i++) {
 		for (unsigned int j = 0; j <= n + m + 1; j++) {
 			if (j == 0) { //Variables básicas
@@ -124,8 +113,8 @@ void PROBLEM::volcar_tabla() {
 					cout << 'x' << ivb[i] + 1 << " |   ";
 			} else if (j == n + m + 1) { //términos independientes
 				cout << b[i];
-			} else {//coeficientes tecnológicos
-				if(A[i][j - 1] >= 0)
+			} else { //coeficientes tecnológicos
+				if (A[i][j - 1] >= 0)
 					cout << A[i][j - 1] << "     ";
 				else
 					cout << A[i][j - 1] << "    ";
@@ -142,7 +131,7 @@ void PROBLEM::volcar_tabla() {
 	for (unsigned int i = 0; i < n + m; i++) {
 		cout << c[i] << "     ";
 	}
-	cout << Vo << endl;//Valor de la funcion objetivo
+	cout << Vo << endl; //Valor de la funcion objetivo
 	// corregir: si es max ->> -Vo
 }
 
@@ -167,14 +156,53 @@ void PROBLEM::mostrar_solucion() {
 			<< endl;
 }
 
-/*
- * unsigned PROBLEM::entrante(){
- * a = UERROR; min =  CERONEG;
- * para todo i = 0 n +nh-1
- * if(c[i] < min){
- * s = i;
- * min = c[i]
- * }
- * return(s);
- * }
- */
+unsigned PROBLEM::entrante() {
+	unsigned a = UERROR;
+	double min = CERONEG;
+	for (unsigned i = 0; i < n + nh - 1; i++) {
+		if (c[i] < min) {
+			a = i;
+			min = c[i];
+		}
+	}
+	return (a);
+}
+
+unsigned PROBLEM::saliente(unsigned s) {
+
+}
+
+/*void PROBLEM::actualizar_valores(unsigned s, unsigned r) {
+ ivb[r] = s; // actualización de la base
+ double temp = A[r][s];
+ A[r] /= temp;
+ x[r] /= temp;
+ for (int i = 1; i < m; i++) {
+ if (i != r && A[i][s] != 0) {
+ temp = A[i][s];
+ A[i] -= A[r] * temp; // la fila entera de i
+ b[i] -= b[r] * temp;
+ }
+ Vo -= b[r] * c[s]; //actualizamos Vo
+ c[i] -= c[s] * A[r][i];
+ para todo
+ i<> s;
+ for(int i = 0; i)
+ cr[s] = 0.0;
+ }
+
+ }*/
+
+/*void PROBLEM::Simplex_Light() {
+	unsigned s, r;
+	while ((s = entrante()) != UERROR) {
+		volcar_tabla();
+		r = saliente(s);
+		if (r != UERROR)
+			actualizar_valores(s, r);
+		else
+			cout << "¡PROBLEMA NO ACOTADO!" << endl;
+	}
+	volcar_tabla();
+	mostrar_solucion();
+}*/
