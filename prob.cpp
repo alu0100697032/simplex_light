@@ -170,13 +170,22 @@ unsigned PROBLEM::entrante() {
 
 unsigned PROBLEM::saliente(unsigned s) {
 
+	unsigned min = UERROR;
+	for (int i = 0; i < m; i++){
+		if(A[i][s] <= 0){
+			min = UERROR; //duda
+		}else if(b[i]/A[i][s] < min){
+			min = b[i]/A[i][s];
+		}
+	}
+	//return duda
 }
 
 /*void PROBLEM::actualizar_valores(unsigned s, unsigned r) {
  ivb[r] = s; // actualización de la base
  double temp = A[r][s];
- A[r] /= temp;
- x[r] /= temp;
+ A[r] /= temp; //duda
+ x[r] /= temp; //duda
  for (int i = 1; i < m; i++) {
  if (i != r && A[i][s] != 0) {
  temp = A[i][s];
@@ -185,9 +194,8 @@ unsigned PROBLEM::saliente(unsigned s) {
  }
  Vo -= b[r] * c[s]; //actualizamos Vo
  c[i] -= c[s] * A[r][i];
- para todo
+ para todo //duda
  i<> s;
- for(int i = 0; i)
  cr[s] = 0.0;
  }
 
